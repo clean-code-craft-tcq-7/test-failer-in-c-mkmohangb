@@ -2,7 +2,7 @@
 #include <assert.h>
 
 int colorIndexToPairNumber(int majorColorIndex, int minorColorIndex) {
-    return majorColorIndex * 5 + minorColorIndex;
+    return majorColorIndex * 5 + minorColorIndex + 1;
 }
 
 int printColorMap() {
