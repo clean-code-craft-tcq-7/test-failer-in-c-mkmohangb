@@ -48,13 +48,21 @@ void testRainy() {
     free(weather);
 }
 
+struct SensorReadings sensorHighPrecipitationStub() {
+    struct SensorReadings readings;
+    readings.temperatureInC = 50;
+    readings.precipitation = 70;
+    readings.humidity = 26;
+    readings.windSpeedKMPH = 40;
+    return readings;
+}
 void testHighPrecipitation() {
     // This instance of stub needs to be different-
     // to give high precipitation (>60) and low wind-speed (<50)
-    char* weather = report(sensorStub);
-    // strengthen the assert to expose the bug
-    // (function returns Sunny day, it should predict rain)
+    char* weather = report(sensorHighPrecipitationStub);
+
     assert(weather && strlen(weather) > 0);
+    assert(strstr(weather, "rain") != NULL);
     free(weather);
 }
 
